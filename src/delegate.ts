@@ -1,11 +1,11 @@
 import { Func } from "./Func";
 
 /**
- * Creates a new delegate that, when called, will call each of the provided delegates and return an array of their results.
+ * Creates a new function that, when called, will call each of the provided functions and return an array of their results.
  * @typeParam TResult The type of the result provided by the functions.
  * @typeParam TArgs The tuple type of the arguments passed into the function.
- * @param delegates The delegates to call when the returned delegate is called.
+ * @param funcs The functions to call when the returned function is called.
  */
-export function delegate<TResult, TArgs extends readonly unknown[]>(...delegates: Func<TResult, TArgs>[]): Func<TResult[], TArgs> {
-	return (...args: TArgs) => delegates.map(delegate => delegate(...args));
+export function delegate<TResult, TArgs extends readonly unknown[]>(...funcs: Func<TResult, TArgs>[]): Func<TResult[], TArgs> {
+	return (...args: TArgs) => funcs.map(func => func(...args));
 }
